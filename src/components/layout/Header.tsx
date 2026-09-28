@@ -50,10 +50,15 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <LocaleSwitcher className="hidden sm:flex" />
-          <a href="#contact" className={buttonClass("brand", "sm", "hidden lg:inline-flex")}>
-            {t("cta")}
-          </a>
+          {/* Wrappers own the responsive display so it never fights the components' own flex classes. */}
+          <div className="hidden sm:block">
+            <LocaleSwitcher />
+          </div>
+          <div className="hidden lg:block">
+            <a href="#contact" className={buttonClass("brand", "sm")}>
+              {t("cta")}
+            </a>
+          </div>
           <button
             ref={burgerRef}
             type="button"
