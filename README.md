@@ -44,7 +44,8 @@ Save a 3:4 portrait to `public/team/` and add an entry to `src/content/team.ts`.
 
 ## Telegram bot (contact form)
 
-The form posts to `/api/lead`, which sends the lead to **one fixed chat** set in `TELEGRAM_CHAT_ID`.
+The form posts to `/api/lead`, which sends the lead to the **fixed chat(s)** set in `TELEGRAM_CHAT_ID`
+(comma-separated for several, e.g. `-1001111111111,-1002222222222`).
 The bot token never reaches the browser, and adding the bot to another group cannot redirect leads.
 
 1. In Telegram, open **@BotFather** → `/newbot` → copy the token.
@@ -55,6 +56,8 @@ The bot token never reaches the browser, and adding the bot to another group can
 5. Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in Netlify (see below) and redeploy.
 
 To move leads to another chat later, change only `TELEGRAM_CHAT_ID` and redeploy.
+With several chats, a lead counts as delivered when at least one chat receives it; failed chats
+are logged as `[lead] delivered, but one chat failed` in the Netlify function logs.
 
 Spam protection: a hidden honeypot field and a per-IP limit of 3 requests per minute
 (kept in memory per serverless instance).

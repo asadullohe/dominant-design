@@ -49,29 +49,46 @@ function formatLead(lead: Lead) {
   return lines.join("\n");
 }
 
-/**
- * Posts the lead to the single chat configured in TELEGRAM_CHAT_ID.
- * The destination is never taken from the bot's own updates, so adding the bot
- * to another group cannot redirect leads.
- */
-export async function sendLeadToTelegram(lead: Lead) {
-  // Trimmed so a stray space or newline pasted into the Netlify UI can't break delivery.
-  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
-  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
-  if (!token || !chatId) {
-    throw new Error("Telegram is not configured: set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID");
-  }
-
+async function sendMessage(token: string, chatId: string, text: string) {
   const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text: formatLead(lead), parse_mode: "HTML", link_preview_options: { is_disabled: true } }),
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", link_preview_options: { is_disabled: true } }),
     signal: AbortSignal.timeout(8000),
   });
 
   const reply: unknown = await response.json();
   if (!response.ok || !isTelegramReply(reply) || !reply.ok) {
     const detail = isTelegramReply(reply) ? reply.description : "unexpected response";
-    throw new Error(`Telegram sendMessage failed (${response.status}): ${detail}`);
+    throw new Error(`Telegram sendMessage to ${chatId} failed (${response.status}): ${detail}`);
+  }
+}
+
+/**
+ * Posts the lead to every chat listed in TELEGRAM_CHAT_ID (comma-separated).
+ * Destinations come only from that env value, never from the bot's own updates,
+ * so adding the bot to another group cannot redirect leads.
+ * Delivery counts as successful when at least one chat receives the lead; failed chats are logged.
+ */
+export async function sendLeadToTelegram(lead: Lead) {
+  // Trimmed so a stray space or newline pasted into the Netlify UI can't break delivery.
+  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
+  const chatIds = (process.env.TELEGRAM_CHAT_ID ?? "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  if (!token || chatIds.length === 0) {
+    throw new Error("Telegram is not configured: set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID");
+  }
+
+  const text = formatLead(lead);
+  const results = await Promise.allSettled(chatIds.map((chatId) => sendMessage(token, chatId, text)));
+  const failures = results.filter((r): r is PromiseRejectedResult => r.status === "rejected").map((r) => r.reason);
+
+  if (failures.length === chatIds.length) {
+    throw new AggregateError(failures, "Telegram delivery failed for every configured chat");
+  }
+  for (const failure of failures) {
+    console.error("[lead] delivered, but one chat failed", failure);
   }
 }
