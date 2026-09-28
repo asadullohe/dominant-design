@@ -65,3 +65,4 @@ Spam protection: a hidden honeypot field and a per-IP limit of 3 requests per mi
 2. **Site configuration → Environment variables**: add the variables from `.env.example`.
 3. After connecting the custom domain, set `SITE_URL` (for example `https://dominantdesign.uz`) and redeploy,
    so canonical links, the sitemap and Open Graph use it.
+# dominant-design
