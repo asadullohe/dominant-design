@@ -60,11 +60,26 @@
     "eyebrow": "How we work",
     "title": "From the first meeting to construction",
     "steps": {
-      "consultation": { "title": "Consultation", "text": "We define the plot, budget and your wishes together." },
-      "sketch": { "title": "Sketch", "text": "We propose several options for layout and massing." },
-      "design": { "title": "Design", "text": "Architectural, structural and engineering drawings." },
-      "visualisation": { "title": "Visualisation", "text": "Facade and interior signed off in 3D renders." },
-      "supervision": { "title": "Supervision", "text": "Author supervision throughout construction." }
+      "consultation": {
+        "title": "Consultation",
+        "text": "We define the plot, budget and your wishes together."
+      },
+      "sketch": {
+        "title": "Sketch",
+        "text": "We propose several options for layout and massing."
+      },
+      "design": {
+        "title": "Design",
+        "text": "Architectural, structural and engineering drawings."
+      },
+      "visualisation": {
+        "title": "Visualisation",
+        "text": "Facade and interior signed off in 3D renders."
+      },
+      "supervision": {
+        "title": "Supervision",
+        "text": "Author supervision throughout construction."
+      }
     }
   },
   "team": {
@@ -117,6 +132,8 @@
   "gallery": {
     "close": "Close",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   }
 }

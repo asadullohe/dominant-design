@@ -12,8 +12,8 @@ export interface Project {
   kind: ProjectKind;
   /** Number of gallery images in /public/projects/<slug>/, named 1.jpg … n.jpg. 1.jpg is the cover. */
   imageCount: number;
-  /** Intrinsic size of the cover, used to reserve layout space. */
-  cover: { width: number; height: number };
+  /** Intrinsic size shared by every image of the project (renders are exported in one orientation). */
+  size: { width: number; height: number };
   title: Localized;
 }
 

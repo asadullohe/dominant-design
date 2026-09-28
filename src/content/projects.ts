@@ -10,7 +10,7 @@ export const projects: Project[] = [
     category: "house",
     kind: "render",
     imageCount: 6,
-    cover: LANDSCAPE,
+    size: LANDSCAPE,
     title: { uz: "Bir qavatli hovli uy", ru: "Одноэтажный дом с двором", en: "Single-storey courtyard house" },
   },
   {
@@ -18,7 +18,7 @@ export const projects: Project[] = [
     category: "interior",
     kind: "render",
     imageCount: 6,
-    cover: PORTRAIT,
+    size: PORTRAIT,
     title: { uz: "Oshxona-mehmonxona interyeri", ru: "Интерьер кухни-гостиной", en: "Kitchen and living room interior" },
   },
   {
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     category: "house",
     kind: "render",
     imageCount: 6,
-    cover: LANDSCAPE,
+    size: LANDSCAPE,
     title: { uz: "Neoklassik ikki qavatli uy", ru: "Двухэтажный дом в неоклассике", en: "Two-storey neoclassical house" },
   },
   {
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     category: "interior",
     kind: "render",
     imageCount: 6,
-    cover: PORTRAIT,
+    size: PORTRAIT,
     title: { uz: "Yotoqxona interyeri", ru: "Интерьер спальни", en: "Bedroom interior" },
   },
   {
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     category: "house",
     kind: "render",
     imageCount: 6,
-    cover: LANDSCAPE,
+    size: LANDSCAPE,
     title: { uz: "Qorakoʻldagi hovli uy", ru: "Дом с двором в Каракуле", en: "Courtyard house in Qorakol" },
   },
   {
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     category: "interior",
     kind: "render",
     imageCount: 5,
-    cover: PORTRAIT,
+    size: PORTRAIT,
     title: { uz: "Hammom interyeri", ru: "Интерьер ванной комнаты", en: "Bathroom interior" },
   },
 ];

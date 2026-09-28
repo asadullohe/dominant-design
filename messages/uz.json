@@ -60,11 +60,26 @@
     "eyebrow": "Ish jarayoni",
     "title": "Birinchi uchrashuvdan qurilishgacha",
     "steps": {
-      "consultation": { "title": "Konsultatsiya", "text": "Uchastka, byudjet va istaklaringizni birga aniqlaymiz." },
-      "sketch": { "title": "Eskiz", "text": "Planirovka va hajm boʻyicha bir necha variant taklif qilamiz." },
-      "design": { "title": "Loyiha", "text": "Arxitektura, konstruksiya va muhandislik chizmalari." },
-      "visualisation": { "title": "Vizualizatsiya", "text": "Fasad va interyerni 3D renderlarda tasdiqlaymiz." },
-      "supervision": { "title": "Nazorat", "text": "Qurilish davomida mualliflik nazorati." }
+      "consultation": {
+        "title": "Konsultatsiya",
+        "text": "Uchastka, byudjet va istaklaringizni birga aniqlaymiz."
+      },
+      "sketch": {
+        "title": "Eskiz",
+        "text": "Planirovka va hajm boʻyicha bir necha variant taklif qilamiz."
+      },
+      "design": {
+        "title": "Loyiha",
+        "text": "Arxitektura, konstruksiya va muhandislik chizmalari."
+      },
+      "visualisation": {
+        "title": "Vizualizatsiya",
+        "text": "Fasad va interyerni 3D renderlarda tasdiqlaymiz."
+      },
+      "supervision": {
+        "title": "Nazorat",
+        "text": "Qurilish davomida mualliflik nazorati."
+      }
     }
   },
   "team": {
@@ -117,6 +132,8 @@
   "gallery": {
     "close": "Yopish",
     "prev": "Oldingi",
-    "next": "Keyingi"
+    "next": "Keyingi",
+    "zoomIn": "Kattalashtirish",
+    "zoomOut": "Kichraytirish"
   }
 }
