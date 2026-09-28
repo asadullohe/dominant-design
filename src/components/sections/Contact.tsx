@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buttonClass } from "@/components/ui/button";
 import { LeadForm } from "@/components/contact/LeadForm";
+import { MapEmbed } from "@/components/contact/MapEmbed";
 
 export async function Contact() {
   const t = await getTranslations("contact");
@@ -47,7 +48,8 @@ export async function Contact() {
                 </div>
               ))}
             </dl>
-            <a href={contact.mapHref} target="_blank" rel="noopener noreferrer" className={buttonClass("ghost", "md", "w-full bg-float")}>
+            <MapEmbed lat={contact.map.lat} lng={contact.map.lng} locale={locale} title={t("mapTitle")} />
+            <a href={contact.map.href} target="_blank" rel="noopener noreferrer" className={buttonClass("ghost", "md", "w-full bg-float")}>
               {t("map")}
             </a>
           </Reveal>

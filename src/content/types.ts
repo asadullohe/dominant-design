@@ -65,5 +65,10 @@ export interface ContactInfo {
   instagram: { handle: string; href: string };
   address: Localized;
   hours: string;
-  mapHref: string;
+  map: {
+    /** Share link of the Google Maps place, opened in the Maps app. */
+    href: string;
+    lat: number;
+    lng: number;
+  };
 }

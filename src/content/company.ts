@@ -55,6 +55,6 @@ export const contact: ContactInfo = {
     en: "Baghdad district, Public Services Centre, 2nd floor",
   },
   hours: "08:00–20:00",
-  // Google Maps place "DOMINANT DESIGN" (40.4607057, 71.2135499), shared by the studio.
-  mapHref: "https://maps.app.goo.gl/6Y9wJ8d1vejzbYbM6",
+  // Google Maps place "DOMINANT DESIGN", shared by the studio.
+  map: { href: "https://maps.app.goo.gl/6Y9wJ8d1vejzbYbM6", lat: 40.4607057, lng: 71.2135499 },
 };

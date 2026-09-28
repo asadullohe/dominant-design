@@ -97,7 +97,8 @@
       "address": "Manzil",
       "hours": "Ish vaqti"
     },
-    "map": "Xaritada ochish"
+    "map": "Xaritada ochish",
+    "mapTitle": "Dominant Design ofisi xaritada"
   },
   "form": {
     "name": "Ismingiz",

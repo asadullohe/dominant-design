@@ -97,7 +97,8 @@
       "address": "Address",
       "hours": "Hours"
     },
-    "map": "Open in maps"
+    "map": "Open in maps",
+    "mapTitle": "Dominant Design office on the map"
   },
   "form": {
     "name": "Your name",
