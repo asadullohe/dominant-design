@@ -7,6 +7,7 @@ import { services } from "@/content/services";
 import { buttonClass } from "@/components/ui/button";
 import { invalidFields, isLeadResponse, leadSchema, type LeadField } from "@/lib/lead-schema";
 import { Field, inputClass } from "./Field";
+import { PhoneInput } from "./PhoneInput";
 
 type Status = { kind: "idle" | "sending" | "success" } | { kind: "error"; reason: "rateLimit" | "server" };
 
@@ -79,9 +80,7 @@ export function LeadForm() {
         {(control) => <input {...control} name="name" autoComplete="name" required className={inputClass} />}
       </Field>
       <Field id="lead-phone" label={t("phone")} error={hasError("phone") ? t("errors.phone") : undefined}>
-        {(control) => (
-          <input {...control} name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+998 90 123 45 67" required className={inputClass} />
-        )}
+        {(control) => <PhoneInput control={control} name="phone" className={inputClass} />}
       </Field>
       <Field id="lead-service" label={t("service")} className="sm:col-span-2">
         {(control) => (
