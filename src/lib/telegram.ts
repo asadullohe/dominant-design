@@ -12,27 +12,41 @@ function isTelegramReply(value: unknown): value is TelegramReply {
 
 const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/** The office reads leads in Uzbek regardless of the visitor's language. */
+const SERVICE_ICONS: Record<string, string> = { residential: "🏡", cadastre: "📐", "non-residential": "🏢" };
+
+const LOCALE_LABELS: Record<Lead["locale"], string> = { uz: "🇺🇿 Oʻzbekcha", ru: "🇷🇺 Ruscha", en: "🇬🇧 Inglizcha" };
+
+/**
+ * The office reads leads in Uzbek regardless of the visitor's language.
+ * Telegram HTML allows only http(s)/tg links, so the phone stays plain text (clients make it tappable)
+ * and a t.me/+number link opens a chat with the client when their privacy settings allow it.
+ */
 function formatLead(lead: Lead) {
-  const service = services.find((s) => s.id === lead.service)?.title.uz ?? "—";
+  const service = services.find((s) => s.id === lead.service);
   const time = new Intl.DateTimeFormat("ru-RU", {
     timeZone: "Asia/Tashkent",
     dateStyle: "short",
     timeStyle: "short",
   }).format(new Date());
 
-  return [
-    "🏠 <b>Yangi ariza</b> — Dominant Design sayti",
+  const lines = [
+    "🔔 <b>Yangi ariza</b> · Dominant Design",
     "",
-    `<b>Ism:</b> ${escapeHtml(lead.name)}`,
-    `<b>Telefon:</b> ${formatPhone(lead.phone)}`,
-    `<b>Xizmat:</b> ${escapeHtml(service)}`,
-    lead.message ? `<b>Izoh:</b> ${escapeHtml(lead.message)}` : null,
+    `👤 <b>Ism:</b> ${escapeHtml(lead.name)}`,
+    `📞 <b>Telefon:</b> ${formatPhone(lead.phone)}`,
+    `${service ? SERVICE_ICONS[service.id] ?? "📋" : "📋"} <b>Xizmat:</b> ${service ? escapeHtml(service.title.uz) : "tanlanmagan"}`,
+  ];
+  if (lead.message) {
+    lines.push("", "💬 <b>Izoh:</b>", `<blockquote>${escapeHtml(lead.message)}</blockquote>`);
+  }
+  lines.push(
     "",
-    `Til: ${lead.locale} · ${time}`,
-  ]
-    .filter((line) => line !== null)
-    .join("\n");
+    `🌐 Sayt tili: ${LOCALE_LABELS[lead.locale]}`,
+    `🕒 ${time}`,
+    "",
+    `✍️ <a href="https://t.me/+${lead.phone}">Telegramda yozish</a>`,
+  );
+  return lines.join("\n");
 }
 
 /**
@@ -41,8 +55,9 @@ function formatLead(lead: Lead) {
  * to another group cannot redirect leads.
  */
 export async function sendLeadToTelegram(lead: Lead) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // Trimmed so a stray space or newline pasted into the Netlify UI can't break delivery.
+  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
+  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
   if (!token || !chatId) {
     throw new Error("Telegram is not configured: set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID");
   }
