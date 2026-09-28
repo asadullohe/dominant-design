@@ -45,17 +45,16 @@ export const drawingGroups: DrawingGroup[] = [
   },
 ];
 
-const ADDRESS_UZ = "Bagʻdod tumani, Davlat xizmatlari markazi, 2-qavat";
-
 export const contact: ContactInfo = {
   phone: { display: "+998 33 118 33 00", href: "tel:+998331183300" },
   telegram: { handle: "@dominant_design", href: "https://t.me/dominant_design" },
   instagram: { handle: "@dominant.design", href: "https://instagram.com/dominant.design" },
   address: {
-    uz: ADDRESS_UZ,
+    uz: "Bagʻdod tumani, Davlat xizmatlari markazi, 2-qavat",
     ru: "Багдадский район, Центр госуслуг, 2-й этаж",
     en: "Baghdad district, Public Services Centre, 2nd floor",
   },
   hours: "08:00–20:00",
-  mapHref: `https://yandex.uz/maps/?text=${encodeURIComponent(`${ADDRESS_UZ}, Fargʻona viloyati`)}`,
+  // Google Maps place "DOMINANT DESIGN" (40.4607057, 71.2135499), shared by the studio.
+  mapHref: "https://maps.app.goo.gl/6Y9wJ8d1vejzbYbM6",
 };
