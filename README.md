@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dominant Design — landing page
 
-## Getting Started
+Landing site for Dominant Design, an architecture and design studio in the Fergana region.
+Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · next-intl (uz / ru / en) · deployed on Netlify.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 — the proxy redirects to a locale (`/uz` by default).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Checks before committing:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx tsc --noEmit
+npm run lint
+npm run build
+```
 
-## Learn More
+## Where things live
 
-To learn more about Next.js, take a look at the following resources:
+| What | Where |
+| --- | --- |
+| UI text (buttons, headings, form) | `messages/{uz,ru,en}.json` |
+| Projects, services, team, stats, contacts, drawing sheets | `src/content/*.ts` (typed, one value per locale) |
+| Project renders | `public/projects/<slug>/1.jpg … n.jpg` (`1.jpg` is the cover) |
+| Team portraits (3:4) | `public/team/` |
+| Watermarked drawing sheets | `public/drawings/` |
+| Sections | `src/components/sections/` |
+| Lead endpoint | `src/app/api/lead/route.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Adding a project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Export renders in one orientation, about 2000 px on the long side, and save them as
+   `public/projects/<slug>/1.jpg`, `2.jpg`, …
+2. Add an entry to `src/content/projects.ts` with `imageCount`, `size` and a title in all three languages.
 
-## Deploy on Vercel
+### Adding a team member
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Save a 3:4 portrait to `public/team/` and add an entry to `src/content/team.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Telegram bot (contact form)
+
+The form posts to `/api/lead`, which sends the lead to **one fixed chat** set in `TELEGRAM_CHAT_ID`.
+The bot token never reaches the browser, and adding the bot to another group cannot redirect leads.
+
+1. In Telegram, open **@BotFather** → `/newbot` → copy the token.
+2. Add the bot to the office group (or press **Start** in a private chat with it).
+3. Open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `chat.id`
+   (group ids look like `-100…`). If the list is empty, post `/start@<bot_username>` in the group and reload.
+4. In **@BotFather** → `/setjoingroups` → **Disable**, so nobody can add the bot to other groups.
+5. Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in Netlify (see below) and redeploy.
+
+To move leads to another chat later, change only `TELEGRAM_CHAT_ID` and redeploy.
+
+Spam protection: a hidden honeypot field and a per-IP limit of 3 requests per minute
+(kept in memory per serverless instance).
+
+## Deploy (Netlify)
+
+1. Connect the repository in Netlify. `netlify.toml` already sets the build command, publish directory and Node 22.
+2. **Site configuration → Environment variables**: add the variables from `.env.example`.
+3. After connecting the custom domain, set `SITE_URL` (for example `https://dominantdesign.uz`) and redeploy,
+   so canonical links, the sitemap and Open Graph use it.
