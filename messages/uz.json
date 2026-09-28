@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Dominant Design — arxitektura va dizayn xizmati, Fargʻona",
+    "description": "Fargʻona viloyatida uy-joy, noturar joy va kadastr loyihalari. 2021-yildan beri 500+ loyiha. Birinchi konsultatsiya bepul."
+  },
+  "nav": {
+    "services": "Xizmatlar",
+    "projects": "Loyihalar",
+    "process": "Jarayon",
+    "team": "Jamoa",
+    "contact": "Aloqa",
+    "cta": "Konsultatsiya",
+    "menuOpen": "Menyuni ochish",
+    "menuClose": "Menyuni yopish",
+    "language": "Til",
+    "main": "Asosiy menyu",
+    "home": "Dominant Design — bosh sahifa"
+  },
+  "hero": {
+    "eyebrow": "Arxitektura va dizayn xizmati · Fargʻona",
+    "title": "Orzuingizdagi uy — <accent>aniq chizmada</accent>",
+    "sub": "2021-yildan beri Fargʻona viloyatida uy-joy, noturar joy va kadastr loyihalarini tayyorlaymiz. Birinchi konsultatsiya — bepul.",
+    "cta": "Bepul konsultatsiya",
+    "ctaSecondary": "Loyihalarni koʻrish",
+    "caption": "Bir qavatli hovli uy · render",
+    "imageAlt": "Bir qavatli hovli uyning tungi renderi"
+  },
+  "services": {
+    "eyebrow": "Xizmatlar",
+    "title": "Loyihaning har bir bosqichi bitta jamoada",
+    "sub": "Dominant Design — sifatni tanlovchilar qarori. Loyihaning oʻrtacha muddati 2 haftadan 30 kungacha.",
+    "primaryTag": "Asosiy yoʻnalish"
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Tanlangan loyihalar",
+    "filters": {
+      "all": "Barchasi",
+      "house": "Uy-joy",
+      "interior": "Interyer",
+      "commercial": "Noturar joy"
+    },
+    "kind": {
+      "render": "Render",
+      "built": "Qurilgan"
+    },
+    "renders": "{count} ta render",
+    "open": "{title} — galereyani ochish"
+  },
+  "drawings": {
+    "eyebrow": "Ishchi loyiha",
+    "title": "Quruvchi taxmin qilmaydi — hammasi chizmada",
+    "sub": "Poydevordan tomgacha har bir oʻlcham, material va detal oldindan chizilgan. Qurilishda xato va ortiqcha xarajat kamayadi.",
+    "enlarge": "{title} — kattalashtirish",
+    "listTitle": "Loyiha tarkibi",
+    "spec": "Materiallar hajmi ham hisoblab beriladi: gʻisht, beton, armatura, eshik va derazalar.",
+    "cta": "Loyihaga buyurtma berish"
+  },
+  "process": {
+    "eyebrow": "Ish jarayoni",
+    "title": "Birinchi uchrashuvdan qurilishgacha",
+    "steps": {
+      "consultation": { "title": "Konsultatsiya", "text": "Uchastka, byudjet va istaklaringizni birga aniqlaymiz." },
+      "sketch": { "title": "Eskiz", "text": "Planirovka va hajm boʻyicha bir necha variant taklif qilamiz." },
+      "design": { "title": "Loyiha", "text": "Arxitektura, konstruksiya va muhandislik chizmalari." },
+      "visualisation": { "title": "Vizualizatsiya", "text": "Fasad va interyerni 3D renderlarda tasdiqlaymiz." },
+      "supervision": { "title": "Nazorat", "text": "Qurilish davomida mualliflik nazorati." }
+    }
+  },
+  "team": {
+    "eyebrow": "Jamoa",
+    "title": "Loyihangiz ustida ishlaydigan odamlar"
+  },
+  "contact": {
+    "eyebrow": "Aloqa",
+    "title": "Loyihangizni muhokama qilamiz",
+    "sub": "Birinchi konsultatsiya bepul. Arizani qoldiring — siz bilan bogʻlanib, vaqtni kelishamiz.",
+    "info": {
+      "phone": "Telefon",
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "address": "Manzil",
+      "hours": "Ish vaqti"
+    },
+    "map": "Xaritada ochish"
+  },
+  "form": {
+    "name": "Ismingiz",
+    "phone": "Telefon",
+    "service": "Xizmat turi",
+    "servicePlaceholder": "Tanlang",
+    "message": "Izoh (ixtiyoriy)",
+    "messagePlaceholder": "Masalan: 6 sotix uchastka, 2 qavatli uy",
+    "note": "Ariza toʻgʻridan-toʻgʻri jamoamizning Telegramiga keladi.",
+    "submit": "Ariza yuborish",
+    "sending": "Yuborilmoqda…",
+    "errors": {
+      "name": "Ismingizni kiriting",
+      "phone": "Raqamni +998 90 123 45 67 koʻrinishida kiriting",
+      "message": "Izoh juda uzun — 1000 belgigacha qisqartiring",
+      "rateLimit": "Juda koʻp urinish. Bir daqiqadan keyin qayta yuboring.",
+      "server": "Arizani yuborib boʻlmadi. Iltimos, bizga Telegram orqali yozing yoki qoʻngʻiroq qiling."
+    },
+    "success": {
+      "title": "Ariza qabul qilindi",
+      "text": "Rahmat! Tez orada siz bilan bogʻlanamiz.",
+      "again": "Yana yuborish"
+    },
+    "fallback": "Telegramda yozish"
+  },
+  "footer": {
+    "tagline": "Sifatni tanlovchilar qarori.",
+    "sections": "Sahifa",
+    "contact": "Aloqa",
+    "rights": "Barcha huquqlar himoyalangan."
+  },
+  "gallery": {
+    "close": "Yopish",
+    "prev": "Oldingi",
+    "next": "Keyingi"
+  }
+}

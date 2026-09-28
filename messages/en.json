@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Dominant Design — architecture and design studio, Fergana",
+    "description": "Residential, non-residential and cadastral projects across the Fergana region. 500+ projects since 2021. The first consultation is free."
+  },
+  "nav": {
+    "services": "Services",
+    "projects": "Projects",
+    "process": "Process",
+    "team": "Team",
+    "contact": "Contact",
+    "cta": "Consultation",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "language": "Language",
+    "main": "Main menu",
+    "home": "Dominant Design — home"
+  },
+  "hero": {
+    "eyebrow": "Architecture and design · Fergana",
+    "title": "The home you imagine — <accent>drawn to the millimetre</accent>",
+    "sub": "Since 2021 we have prepared residential, non-residential and cadastral projects across the Fergana region. The first consultation is free.",
+    "cta": "Free consultation",
+    "ctaSecondary": "View projects",
+    "caption": "Single-storey courtyard house · render",
+    "imageAlt": "Night render of a single-storey courtyard house"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Every stage of the project in one team",
+    "sub": "Dominant Design — the choice of those who choose quality. A typical project takes two weeks to 30 days.",
+    "primaryTag": "Core service"
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Selected projects",
+    "filters": {
+      "all": "All",
+      "house": "Residential",
+      "interior": "Interiors",
+      "commercial": "Non-residential"
+    },
+    "kind": {
+      "render": "Render",
+      "built": "Built"
+    },
+    "renders": "{count, plural, one {# render} other {# renders}}",
+    "open": "{title} — open gallery"
+  },
+  "drawings": {
+    "eyebrow": "Working drawings",
+    "title": "Your builder never has to guess — it’s all in the drawings",
+    "sub": "Every dimension, material and detail is drawn in advance, from foundations to roof. Fewer mistakes and less overspending on site.",
+    "enlarge": "{title} — enlarge",
+    "listTitle": "What’s in the set",
+    "spec": "Material quantities are included too: brick, concrete, rebar, doors and windows.",
+    "cta": "Order a project"
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "From the first meeting to construction",
+    "steps": {
+      "consultation": { "title": "Consultation", "text": "We define the plot, budget and your wishes together." },
+      "sketch": { "title": "Sketch", "text": "We propose several options for layout and massing." },
+      "design": { "title": "Design", "text": "Architectural, structural and engineering drawings." },
+      "visualisation": { "title": "Visualisation", "text": "Facade and interior signed off in 3D renders." },
+      "supervision": { "title": "Supervision", "text": "Author supervision throughout construction." }
+    }
+  },
+  "team": {
+    "eyebrow": "Team",
+    "title": "The people working on your project"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let’s talk about your project",
+    "sub": "The first consultation is free. Leave a request and we’ll get back to you to arrange a time.",
+    "info": {
+      "phone": "Phone",
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "address": "Address",
+      "hours": "Hours"
+    },
+    "map": "Open in maps"
+  },
+  "form": {
+    "name": "Your name",
+    "phone": "Phone",
+    "service": "Service",
+    "servicePlaceholder": "Choose one",
+    "message": "Comment (optional)",
+    "messagePlaceholder": "For example: 600 m² plot, two-storey house",
+    "note": "Requests go straight to our team’s Telegram.",
+    "submit": "Send request",
+    "sending": "Sending…",
+    "errors": {
+      "name": "Enter your name",
+      "phone": "Enter the number as +998 90 123 45 67",
+      "message": "The comment is too long — keep it under 1000 characters",
+      "rateLimit": "Too many attempts. Try again in a minute.",
+      "server": "We couldn’t send your request. Please message us on Telegram or call."
+    },
+    "success": {
+      "title": "Request received",
+      "text": "Thank you! We’ll be in touch soon.",
+      "again": "Send another"
+    },
+    "fallback": "Message on Telegram"
+  },
+  "footer": {
+    "tagline": "The choice of those who choose quality.",
+    "sections": "Sections",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+  "gallery": {
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next"
+  }
+}

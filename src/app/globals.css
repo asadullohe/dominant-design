@@ -1,26 +1,320 @@
 @import "tailwindcss";
 
+/* ---------- Design tokens ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --page: #ffffff;
+  --block: #f5f4f4;
+  --float: #ffffff;
+  --card: #f7f8f9;
+  --tint: #f3eee8;
+  --text: #0c0a15;
+  --text2: rgba(15, 9, 43, 0.6);
+  --text3: rgba(15, 9, 43, 0.35);
+  --stroke: #e8e9f1;
+  --stroke-light: #f5f4f4;
+  --art-bg: #f3eee8;
+  --art-line: rgba(12, 10, 21, 0.55);
+  color-scheme: light;
+}
+
+/* Sections that sit on the brand black: hero, drawings, footer, header */
+.theme-dark {
+  --page: #111111;
+  --block: #1a1a1a;
+  --float: #232323;
+  --card: #232323;
+  --text: #ffffff;
+  --text2: rgba(255, 255, 255, 0.62);
+  --text3: rgba(255, 255, 255, 0.35);
+  --stroke: #333333;
+  --stroke-light: rgba(255, 255, 255, 0.08);
+  --art-bg: #1a1a1a;
+  --art-line: rgba(238, 131, 34, 0.9);
+  color-scheme: dark;
+  background-color: var(--page);
+  color: var(--text);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-page: var(--page);
+  --color-block: var(--block);
+  --color-float: var(--float);
+  --color-card: var(--card);
+  --color-tint: var(--tint);
+  --color-text: var(--text);
+  --color-text2: var(--text2);
+  --color-text3: var(--text3);
+  --color-stroke: var(--stroke);
+  --color-stroke-light: var(--stroke-light);
+  --color-brand: #ee8322;
+  --color-brand-hover: #f39440;
+  --color-on-brand: #0c0a15;
+  --color-error: #e5484d;
+  --color-success: #12d5aa;
+
+  --radius-ctl: 12px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-unbounded), var(--font-inter), system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--page);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+  section[id] {
+    scroll-margin-top: 64px;
+  }
+  @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 72px;
+    }
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1,
+  h2 {
+    text-wrap: balance;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- Eyebrow label with a drawn line ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--color-brand);
+  transform-origin: left;
+  transition: transform 0.9s var(--ease-draw) calc(var(--d, 0s) + 0.2s);
+}
+
+/* ---------- Architectural dimension lines around the hero image ---------- */
+.dim {
+  position: absolute;
+  color: var(--color-brand);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  background: currentColor;
+}
+.dim::before,
+.dim::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+.dim-top {
+  top: 8px;
+  left: 30px;
+  right: 0;
+  height: 1px;
+}
+.dim-top::before {
+  left: -4px;
+  top: 0;
+}
+.dim-top::after {
+  right: -4px;
+  top: 0;
+}
+.dim-left {
+  left: 8px;
+  top: 30px;
+  bottom: 0;
+  width: 1px;
+}
+.dim-left::before {
+  top: -1px;
+  left: -4px;
+}
+.dim-left::after {
+  bottom: -1px;
+  left: -4px;
+}
+.dim b {
+  position: absolute;
+  font-weight: 500;
+  background: var(--page);
+  padding: 0 8px;
+  color: var(--color-brand);
+}
+.dim-top b {
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%);
+}
+.dim-left b {
+  top: 50%;
+  left: -6px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+}
+
+/* ---------- Motion ----------
+   `anim` is set on <html> before paint only when the visitor allows motion,
+   so without JS or with reduced motion every element simply stays visible. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes photo-in {
+  from {
+    opacity: 0;
+    filter: grayscale(1) contrast(1.3) brightness(0.6);
+  }
+}
+@keyframes wipe-x {
+  from {
+    clip-path: inset(-12px 100% -12px -12px);
+  }
+  to {
+    clip-path: inset(-12px);
+  }
+}
+@keyframes wipe-y {
+  from {
+    clip-path: inset(-12px -12px 100% -12px);
+  }
+  to {
+    clip-path: inset(-12px);
+  }
+}
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+.anim [data-load] {
+  animation: rise 0.9s var(--ease-out-soft) both;
+  animation-delay: var(--d, 0s);
+}
+.anim .hero-drawing path {
+  stroke-dasharray: 1;
+  animation: draw 1.8s var(--ease-draw) both;
+  animation-delay: calc(0.45s + var(--i, 0) * 90ms);
+}
+.anim .hero-photo {
+  animation: photo-in 1.6s ease both 2s;
+}
+.anim .dim-top {
+  animation: wipe-x 1.1s var(--ease-draw) both 0.35s;
+}
+.anim .dim-left {
+  animation: wipe-y 1.1s var(--ease-draw) both 0.5s;
+}
+
+.anim [data-reveal] {
+  transition:
+    opacity 0.8s var(--ease-out-soft) var(--d, 0s),
+    transform 1s var(--ease-out-soft) var(--d, 0s);
+}
+.anim [data-reveal]:not([data-shown]) {
+  opacity: 0;
+  transform: translateY(32px);
+}
+.anim .eyebrow[data-reveal]:not([data-shown])::before {
+  transform: scaleX(0);
+}
+
+/* Project cards: the image rises from the ground line, then the caption follows */
+.anim [data-reveal="rise-image"]:not([data-shown]) {
+  opacity: 1;
+  transform: none;
+}
+.anim [data-reveal="rise-image"] .card-media {
+  transition: clip-path 1.1s var(--ease-draw) var(--d, 0s);
+  clip-path: inset(0 round var(--radius-card));
+}
+.anim [data-reveal="rise-image"]:not([data-shown]) .card-media {
+  clip-path: inset(100% 0 0 0 round var(--radius-card));
+}
+.anim [data-reveal="rise-image"] .card-media img {
+  transition: transform 1.4s var(--ease-out-soft) var(--d, 0s);
+}
+.anim [data-reveal="rise-image"]:not([data-shown]) .card-media img {
+  transform: scale(1.18);
+}
+.anim [data-reveal="rise-image"] .card-caption {
+  transition:
+    opacity 0.7s var(--ease-out-soft) calc(var(--d, 0s) + 0.35s),
+    transform 0.8s var(--ease-out-soft) calc(var(--d, 0s) + 0.35s);
+}
+.anim [data-reveal="rise-image"]:not([data-shown]) .card-caption {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.anim .menu-panel {
+  animation: fade-in 0.25s ease both;
+}
+.anim .menu-panel [data-menu-item] {
+  animation: rise 0.6s var(--ease-out-soft) both;
+  animation-delay: calc(60ms + var(--i, 0) * 55ms);
+}
+.sheet-swap {
+  animation: sheet-in 0.5s var(--ease-out-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
