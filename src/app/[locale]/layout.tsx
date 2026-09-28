@@ -15,10 +15,17 @@ const unbounded = Unbounded({
   display: "swap",
 });
 
-// Motion is opt-in: the class is added before first paint, so reveal effects never hide content
-// for visitors without JS or with reduced motion enabled.
-const MOTION_SCRIPT =
-  "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('anim')";
+// Leads <body> so it runs before the page paints.
+// 1. Motion is opt-in: `anim` is added before first paint, so reveal effects never hide content
+//    for visitors without JS or with reduced motion enabled. It must not live in <head>: on the
+//    production domain Netlify injects a "hosted on Netlify" comment plus a newline there, head
+//    hydration then fails (React #418) and a head-rendered script lost the class.
+// 2. Next renders no comments or whitespace in <head>, so any such node is Netlify's; removing it
+//    avoids the #418 whenever this runs before React starts hydrating (the async chunks can win).
+const BOOT_SCRIPT = [
+  "for(const n of Array.from(document.head.childNodes))if(n.nodeType===8||(n.nodeType===3&&!n.data.trim()))n.remove();",
+  "if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('anim')",
+].join("");
 
 export const dynamicParams = false;
 
@@ -63,10 +70,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
 
   return (
     <html lang={locale} className={`${inter.variable} ${unbounded.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: MOTION_SCRIPT }} />
-      </head>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
